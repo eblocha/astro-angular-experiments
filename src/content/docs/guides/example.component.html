@@ -1,0 +1,9 @@
+<div>
+  <button (click)="handleClick()">Toggle</button>
+
+  @if (visible()) {
+    <p>Now you see me</p>
+  }
+
+  <app-other [appSomething]="0" />
+</div>

@@ -1,17 +1,25 @@
-import { Component, signal } from "@angular/core";
+import { Component, forwardRef, model } from "@angular/core";
+import { OtherComponent } from "./other.component";
+import { SomethingDirective } from "./something.directive";
 
+/**
+ * This is a description of the component
+ */
 @Component({
   selector: "app-example",
-  template: `
-    <div>
-      <button (click)="visible.set(!visible())">Toggle</button>
-
-      @if (visible()) {
-        <p>Now you see me</p>
-      }
-    </div>
-  `,
+  imports: [OtherComponent, SomethingDirective],
+  templateUrl: "./example.component.html",
 })
 export class ExampleComponent {
-  readonly visible = signal(false);
+  readonly visible = model(false);
+
+  readonly ro =
+    typeof ResizeObserver === "undefined"
+      ? undefined
+      : new ResizeObserver(() => {});
+
+  handleClick(): void {
+    this.visible.update((v) => !v);
+    console.log(this.ro);
+  }
 }

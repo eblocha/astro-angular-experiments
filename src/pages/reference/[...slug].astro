@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { Code } from '@astrojs/starlight/components';
+
+const reference = await getCollection('reference');
+
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+  const reference = await getCollection('reference');
+  return reference.map(doc => ({
+    params: { slug: doc.id },
+    props: { doc },
+  }));
+}
+// 2. For your template, you can get the entry directly from the prop
+const { doc } = Astro.props;
+---
+
+<StarlightPage frontmatter={{ title: doc.data.name }} sidebar={[
+  {
+    label: "Reference",
+    items: reference.map((item) => ({
+      label: item.data.name,
+      link: '/reference/' + item.data.name
+    }))
+  },
+]}>
+
+  <p>{doc.data.description}</p>
+  <Code code={JSON.stringify(doc.data, undefined, 2)} lang='json' />
+</StarlightPage>

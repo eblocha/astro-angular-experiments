@@ -1,0 +1,13 @@
+---
+title: Example 2
+---
+
+import LinkedCode from "../../../../components/linked-code.astro";
+
+import tsSource from "../example.component.ts?raw";
+
+<LinkedCode code={tsSource} lang="ts" />
+
+<LinkedCode code={"this is invalid typescript"} lang="ts" />
+
+<LinkedCode code={tsSource} lang="ts" meta="twoslash" />

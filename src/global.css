@@ -1,0 +1,8 @@
+.ec-link {
+  text-decoration: underline dotted;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+}
+
+.ec-link:hover {
+  text-decoration: underline;
+}

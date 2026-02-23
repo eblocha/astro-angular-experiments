@@ -6,14 +6,8 @@ import analogjsangular from "@analogjs/astro-angular";
 
 // https://astro.build/config
 export default defineConfig({
+  trailingSlash: "never",
   integrations: [
-    analogjsangular({
-      vite: {
-        transformFilter: (_code, id) => {
-          return id.endsWith("component.ts");
-        },
-      },
-    }),
     starlight({
       lastUpdated: true,
       title: "My Docs",
@@ -27,16 +21,25 @@ export default defineConfig({
       sidebar: [
         {
           label: "Guides",
-          items: [
-            // Each item here is one entry in the navigation menu.
-            { label: "Example Guide", slug: "guides/example" },
-          ],
+          autogenerate: {
+            directory: "guides",
+          },
         },
         {
           label: "Reference",
           autogenerate: { directory: "reference" },
+          collapsed: true,
         },
       ],
+      expressiveCode: {},
+      customCss: ["./src/global.css"],
+    }),
+    analogjsangular({
+      vite: {
+        transformFilter: (_code, id) => {
+          return !id.endsWith("content.config.ts") && id.endsWith(".ts");
+        },
+      },
     }),
   ],
 });
