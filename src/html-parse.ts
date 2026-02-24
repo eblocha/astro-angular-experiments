@@ -55,12 +55,9 @@ const checker = compiler.getTemplateTypeChecker();
 
 const nodes = checker.getTemplate(firstComp!, OptimizeFor.SingleFile);
 
-class LogComponentVisitor extends CombinedRecursiveAstVisitor {
-  visitComponent(component: TmplAstComponent): void {
-    console.log(component);
-    return super.visitComponent(component);
-  }
+const elementMap = checker.getElementsInFileScope(firstComp!);
 
+class LogComponentVisitor extends CombinedRecursiveAstVisitor {
   visitElement(element: TmplAstElement): void {
     console.log(`--- <${element.name}> ---`);
 
@@ -135,6 +132,24 @@ class LogComponentVisitor extends CombinedRecursiveAstVisitor {
     });
 
     console.log("directives", directivesToLink);
+
+    // Figure out which component (if any) the element belongs to
+    const potentialDirective = elementMap.get(element.name);
+
+    if (potentialDirective?.isInScope) {
+      const pos = {
+        line: element.startSourceSpan.start.line,
+        colStart: element.startSourceSpan.start.col,
+        colEnd: element.startSourceSpan.start.col + element.name.length,
+      };
+
+      console.log("component", {
+        componentName: potentialDirective.tsSymbol.getName(),
+        pos,
+      });
+    }
+
+    console.log("");
 
     return super.visitElement(element);
   }
