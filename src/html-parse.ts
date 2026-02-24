@@ -21,6 +21,7 @@ const config: CompilerOptions = {
   skipLibCheck: true,
   strictTemplates: true,
   module: ts.ModuleKind.ES2022,
+  _enableTemplateTypeChecker: true,
 };
 
 const compilerHost = createCompilerHost({ options: config });
@@ -45,17 +46,6 @@ for (const decl of components) {
 }
 
 const checker = compiler.getTemplateTypeChecker();
-// checker.generateAllTypeCheckBlocks();
-
-// const potentialDirectives = checker.getElementsInFileScope(firstComp!);
-
-// console.log(
-//   program
-//     .getTsProgram()
-//     .getSourceFile(
-//       path.resolve("./content/docs/guides/example.component.ngtypecheck.ts"),
-//     ),
-// );
 
 const nodes = checker.getTemplate(firstComp!, OptimizeFor.SingleFile);
 
@@ -66,8 +56,6 @@ class LogComponentVisitor extends CombinedRecursiveAstVisitor {
   }
   visitElement(element: TmplAstElement): void {
     console.log(checker.getDirectivesOfNode(firstComp!, element));
-
-    // console.log(element.name);
     return super.visitElement(element);
   }
 }
@@ -77,5 +65,3 @@ const visitor = new LogComponentVisitor();
 nodes!.forEach((node) => {
   node.visit(visitor);
 });
-
-// console.log(JSON.stringify(nodes, undefined, 2));
