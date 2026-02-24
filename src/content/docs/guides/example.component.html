@@ -2,8 +2,13 @@
   <button (click)="handleClick()">Toggle</button>
 
   @if (visible()) {
-    <p>Now you see me</p>
+    <p appSomethingElse>Now you see me</p>
   }
 
   <app-other [appSomething]="0" />
+
+  <input [(ngModel)]="value" />
+
+  <div [(appModel)]="value"></div>
+  <div [appModel]="value" (appModelChange)="value = $event ?? null"></div>
 </div>
