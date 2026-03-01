@@ -18,7 +18,9 @@ export function ecLinks(): ExpressiveCodePlugin {
   return {
     name: "ec-links",
     hooks: {
-      performSyntaxAnalysis({ codeBlock }) {
+      async performSyntaxAnalysis({ codeBlock }) {
+        console.log(await import("astro:content"));
+
         scanner.setText(codeBlock.code);
         let token = scanner.scan();
 
