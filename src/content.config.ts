@@ -4,15 +4,12 @@ import { defineCollection } from "astro:content";
 import { docsLoader } from "@astrojs/starlight/loaders";
 import { docsSchema } from "@astrojs/starlight/schema";
 
-import {
-  NgtscProgram,
-  createCompilerHost,
-  type CompilerOptions,
-} from "@angular/compiler-cli";
+import workerpool from "workerpool";
+import { type DocEntry, type CompilerOptions } from "@angular/compiler-cli";
 import ts from "typescript";
 
 const reference = defineCollection({
-  loader: (): { id: string }[] => {
+  loader: async (): Promise<{ id: string }[]> => {
     const config: CompilerOptions = {
       rootDir: ".",
       moduleResolution: ts.ModuleResolutionKind.Bundler,
@@ -21,41 +18,45 @@ const reference = defineCollection({
       module: ts.ModuleKind.ES2022,
     };
 
-    const compilerHost = createCompilerHost({ options: config });
-
-    const program = new NgtscProgram(
-      [path.resolve("src/content/docs/guides/example.component.ts")],
-      config,
-      compilerHost,
-    );
-
-    const { entries, symbols } = program.getApiDocumentation(
+    const entryPoints = [
       path.resolve("src/content/docs/guides/example.component.ts"),
-      new Set(),
-    );
+      path.resolve("src/content/docs/guides/other.component.ts"),
+    ];
 
-    const docEntries: { id: string; [key: string]: unknown }[] = entries.map(
-      (entry) => ({
-        id: "prefix/" + entry.name,
-        ...entry,
-      }),
-    );
+    const pool = workerpool.pool("./src/worker.ts", { maxWorkers: 4 });
 
-    const links: Record<string, string> = {};
+    const promises: Promise<{
+      entries: DocEntry[];
+      links: Record<string, string>;
+    }>[] = [];
 
-    const angularPrefix = "@angular/";
-
-    for (const [k, v] of symbols) {
-      const baseUrl = v.startsWith(angularPrefix)
-        ? "https://angular.dev/api/" + v.slice(angularPrefix.length)
-        : v;
-
-      links[k] = baseUrl + "/" + k;
+    for (const entry of entryPoints) {
+      promises.push(
+        pool.proxy().then((worker) =>
+          worker.getApiDocumentation({
+            path: entry,
+            compilerOptions: config,
+          }),
+        ),
+      );
     }
 
+    const results = await Promise.all(promises);
+
+    await pool.terminate();
+
+    const docEntries: { id: string; [key: string]: unknown }[] =
+      results.flatMap((result) =>
+        result.entries.map((entry) => ({
+          id: "prefix/" + entry.name,
+          ...entry,
+        })),
+      );
+
+    // TODO merge links
     docEntries.push({
       id: "__symbols",
-      symbols: links,
+      symbols: results[0].links,
     });
 
     return docEntries;
