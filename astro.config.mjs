@@ -7,6 +7,12 @@ import analogjsangular from "@analogjs/astro-angular";
 // https://astro.build/config
 export default defineConfig({
   trailingSlash: "never",
+  experimental: {
+    rustCompiler: true,
+    queuedRendering: {
+      enabled: true,
+    },
+  },
   integrations: [
     starlight({
       lastUpdated: true,
@@ -37,7 +43,11 @@ export default defineConfig({
     analogjsangular({
       vite: {
         transformFilter: (_code, id) => {
-          return !id.endsWith("content.config.ts") && id.endsWith(".ts");
+          return (
+            !id.endsWith("content.config.ts") &&
+            !id.includes(".astro") &&
+            id.endsWith(".ts")
+          );
         },
       },
     }),
