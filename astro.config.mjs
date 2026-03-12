@@ -17,15 +17,15 @@ export default defineConfig({
     build: {
       rollupOptions: {
         onwarn(warning, handler) {
-          if (
-            // re-exports can cause this, as well as angular decorators because they are erased by the angular compiler.
-            warning.code === "UNUSED_EXTERNAL_IMPORT" ||
-            // Don't care about sourcemap issues with dependencies: css-selector-parser triggers this when not hoisted :shrug:
-            (warning.code === "SOURCEMAP_ERROR" &&
-              warning.id?.includes("node_modules/.pnpm/"))
-          ) {
-            return;
-          }
+          // if (
+          //   // re-exports can cause this, as well as angular decorators because they are erased by the angular compiler.
+          //   warning.code === "UNUSED_EXTERNAL_IMPORT" ||
+          //   // Don't care about sourcemap issues with dependencies: css-selector-parser triggers this when not hoisted :shrug:
+          //   (warning.code === "SOURCEMAP_ERROR" &&
+          //     warning.id?.includes("node_modules/.pnpm/"))
+          // ) {
+          //   return;
+          // }
           handler(warning);
         },
       },
