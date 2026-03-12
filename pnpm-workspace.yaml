@@ -5,3 +5,6 @@ allowBuilds:
   lmdb: false
   msgpackr-extract: false
   sharp: false
+
+overrides:
+  vite: 8.0.0
