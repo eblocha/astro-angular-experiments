@@ -1,6 +1,5 @@
-strictPeerDependencies: true
 allowBuilds:
-  "@parcel/watcher": false
+  '@parcel/watcher': false
   esbuild: false
   lmdb: false
   msgpackr-extract: false

@@ -53,4 +53,17 @@ export default defineConfig({
       },
     }),
   ],
+  vite: {
+    plugins: [
+      {
+        name: 'fix-ngServerMode',
+        configEnvironment(name, options) {
+          if (name === 'client') {
+            options.define ??= {};
+            options.define['ngServerMode'] = 'false'
+          }
+        }
+      }
+    ]
+  }
 });
