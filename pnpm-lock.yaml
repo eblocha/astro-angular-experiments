@@ -50,6 +50,9 @@ importers:
       '@astrojs/starlight':
         specifier: ^0.38.1
         version: 0.38.1(astro@6.0.3(@types/node@24.12.0)(rollup@4.59.0)(sass@1.97.3)(typescript@5.9.3))
+      '@pagefind/component-ui':
+        specifier: 1.5.0-alpha.3
+        version: 1.5.0-alpha.3
       astro:
         specifier: ^6.0.3
         version: 6.0.3(@types/node@24.12.0)(rollup@4.59.0)(sass@1.97.3)(typescript@5.9.3)
@@ -1092,6 +1095,9 @@ packages:
   '@oxc-project/types@0.115.0':
     resolution: {integrity: sha512-4n91DKnebUS4yjUHl2g3/b2T+IUdCfmoZGhmwsovZCDaJSs+QkVAM+0AqqTxHSsHfeiMuueT75cZaZcT/m0pSw==}
 
+  '@pagefind/component-ui@1.5.0-alpha.3':
+    resolution: {integrity: sha512-DJtqLRM4E1AjtnEr0C+ct08cLbXomr6XUzeR0sNZ36Qsm/9iEMPisMeQDiZWqsqYWiJBxln3gbIIg8W7T8fJWw==}
+
   '@pagefind/darwin-arm64@1.4.0':
     resolution: {integrity: sha512-2vMqkbv3lbx1Awea90gTaBsvpzgRs7MuSgKDxW0m9oV1GPZCZbZBJg/qL83GIUEN2BFlY46dtUZi54pwH+/pTQ==}
     cpu: [arm64]
@@ -1718,6 +1724,10 @@ packages:
     resolution: {integrity: sha512-UVJyE9MttOsBQIDKw1skb9nAwQuR5wuGD3+82K6JgJlm/Y+KI92oNsMNGZCYdDsVtRHSak0pcV5Dno5+4jh9sw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
+
+  adequate-little-templates@1.0.2:
+    resolution: {integrity: sha512-d0tFFG538l3Y4CElRKtticzrMr/OGohs32/nf3Ewn8rbTMBYwkVNe8mPdXWrDnMlz+ZVUFQjsTmsBD5zCtU4wg==}
+    engines: {node: '>=14'}
 
   agent-base@7.1.4:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
@@ -4488,6 +4498,11 @@ snapshots:
 
   '@oxc-project/types@0.115.0': {}
 
+  '@pagefind/component-ui@1.5.0-alpha.3':
+    dependencies:
+      adequate-little-templates: 1.0.2
+      bcp-47: 2.1.0
+
   '@pagefind/darwin-arm64@1.4.0':
     optional: true
 
@@ -4967,6 +4982,8 @@ snapshots:
       acorn: 8.16.0
 
   acorn@8.16.0: {}
+
+  adequate-little-templates@1.0.2: {}
 
   agent-base@7.1.4: {}
 

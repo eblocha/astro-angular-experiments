@@ -1,0 +1,32 @@
+---
+import "@pagefind/component-ui/css";
+---
+
+<pagefind-config
+  base-url={import.meta.env.BASE_URL}
+  bundle-path={import.meta.env.BASE_URL.replaceAll(/\/$/g, "") + "/pagefind/"}
+></pagefind-config>
+
+<pagefind-modal-trigger></pagefind-modal-trigger>
+<pagefind-modal></pagefind-modal>
+
+<script>
+  import "@pagefind/component-ui";
+</script>
+
+<style is:global>
+  [data-theme="dark"] {
+    --pf-text: #e5e5e5;
+    --pf-text-secondary: #a0a0a0;
+    --pf-text-muted: #949494;
+    --pf-background: #1a1a1a;
+    --pf-border: #333;
+    --pf-border-focus: #555;
+    --pf-skeleton: #2a2a2a;
+    --pf-skeleton-shine: #333;
+    --pf-hover: #252525;
+    --pf-mark: #e5e5e5;
+    --pf-scroll-shadow: rgba(255, 255, 255, 0.1);
+    --pf-outline-focus: #58a6ff;
+  }
+</style>

@@ -7,6 +7,7 @@ import analogjsangular from "@analogjs/astro-angular";
 // https://astro.build/config
 export default defineConfig({
   trailingSlash: "never",
+  base: 'dist',
   experimental: {
     rustCompiler: true,
     queuedRendering: {
@@ -39,6 +40,9 @@ export default defineConfig({
       ],
       expressiveCode: {},
       customCss: ["./src/global.css"],
+      components: {
+        Search: './src/components/search.astro'
+      }
     }),
     analogjsangular({
       vite: {
@@ -56,14 +60,19 @@ export default defineConfig({
   vite: {
     plugins: [
       {
-        name: 'fix-ngServerMode',
-        configEnvironment(name, options) {
+        name: 'analogjs-astro-client-ngservermode',
+        configEnvironment(name) {
           if (name === 'client') {
-            options.define ??= {};
-            options.define['ngServerMode'] = 'false'
+            return {
+              define: {
+                ngServerMode: 'false',
+              },
+            };
           }
-        }
-      }
+
+          return undefined;
+        },
+      },
     ]
   }
 });
