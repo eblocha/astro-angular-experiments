@@ -10,7 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@analogjs/astro-angular": "^2.3.0",
+    "@analogjs/astro-angular": "^2.4.0",
     "@angular/animations": "^21.2.0",
     "@angular/build": "^21.2.0",
     "@angular/common": "^21.2.0",

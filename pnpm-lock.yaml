@@ -12,8 +12,8 @@ importers:
   .:
     dependencies:
       '@analogjs/astro-angular':
-        specifier: ^2.3.0
-        version: 2.3.0(be75a74ebb85e5f4d0a07e515f706ea0)
+        specifier: ^2.4.0
+        version: 2.4.0(be75a74ebb85e5f4d0a07e515f706ea0)
       '@angular/animations':
         specifier: ^21.2.0
         version: 21.2.0(@angular/core@21.2.0(@angular/compiler@21.2.0)(rxjs@7.8.2))
@@ -88,8 +88,8 @@ packages:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
-  '@analogjs/astro-angular@2.3.0':
-    resolution: {integrity: sha512-T1HKXQGQLh9WQJctCmuMWvV4bUSzkhySK11Pf3M/oY5ZED9fjITvZOhULo1JOSHn/kk+ZPnuGJnHcjqtVTMmAg==}
+  '@analogjs/astro-angular@2.4.0':
+    resolution: {integrity: sha512-qavo+c9m5FpGUgf5ELFUq4VrLXLeqN1+tjvnDkMWRRxpH10diTeMHSAA24YPCOaRq2sjYvrSC/mka9+vmoeMrw==}
     peerDependencies:
       '@angular/animations': '>=20.0.0'
       '@angular/build': '>=20.0.0'
@@ -103,8 +103,8 @@ packages:
       rxjs: ^7.8.0
       tslib: ^2.4.0
 
-  '@analogjs/vite-plugin-angular@2.3.0':
-    resolution: {integrity: sha512-3zbx2Pu/PyP0cw5EMgpdVMerYwYOtZvV1pFXxoViGZAxFzQ8TGHCuJm4ECg3jcs7iBdt1O9ZejMuwebVCXeD3A==}
+  '@analogjs/vite-plugin-angular@2.4.0':
+    resolution: {integrity: sha512-aMDyyI7vOZ39vyMjCifqnkw4854GJtmfNtC4gxws6f6ET2JeXiNQApf6r+HB2M6dP3kAuPLqaQbNEhh0FrunYA==}
     peerDependencies:
       '@angular-devkit/build-angular': ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0
       '@angular/build': ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0
@@ -3568,9 +3568,9 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.31
 
-  '@analogjs/astro-angular@2.3.0(be75a74ebb85e5f4d0a07e515f706ea0)':
+  '@analogjs/astro-angular@2.4.0(be75a74ebb85e5f4d0a07e515f706ea0)':
     dependencies:
-      '@analogjs/vite-plugin-angular': 2.3.0(@angular/build@21.2.0(221da6de9eb8251750181395e2641a96))
+      '@analogjs/vite-plugin-angular': 2.4.0(@angular/build@21.2.0(221da6de9eb8251750181395e2641a96))
       '@angular/animations': 21.2.0(@angular/core@21.2.0(@angular/compiler@21.2.0)(rxjs@7.8.2))
       '@angular/build': 21.2.0(221da6de9eb8251750181395e2641a96)
       '@angular/common': 21.2.0(@angular/core@21.2.0(@angular/compiler@21.2.0)(rxjs@7.8.2))(rxjs@7.8.2)
@@ -3580,12 +3580,13 @@ snapshots:
       '@angular/language-service': 21.2.0
       '@angular/platform-browser': 21.2.0(@angular/animations@21.2.0(@angular/core@21.2.0(@angular/compiler@21.2.0)(rxjs@7.8.2)))(@angular/common@21.2.0(@angular/core@21.2.0(@angular/compiler@21.2.0)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.0(@angular/compiler@21.2.0)(rxjs@7.8.2))
       '@angular/platform-server': 21.2.0(@angular/common@21.2.0(@angular/core@21.2.0(@angular/compiler@21.2.0)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/compiler@21.2.0)(@angular/core@21.2.0(@angular/compiler@21.2.0)(rxjs@7.8.2))(@angular/platform-browser@21.2.0(@angular/animations@21.2.0(@angular/core@21.2.0(@angular/compiler@21.2.0)(rxjs@7.8.2)))(@angular/common@21.2.0(@angular/core@21.2.0(@angular/compiler@21.2.0)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.0(@angular/compiler@21.2.0)(rxjs@7.8.2)))(rxjs@7.8.2)
+      rehype: 13.0.2
       rxjs: 7.8.2
       tslib: 2.8.1
     transitivePeerDependencies:
       - '@angular-devkit/build-angular'
 
-  '@analogjs/vite-plugin-angular@2.3.0(@angular/build@21.2.0(221da6de9eb8251750181395e2641a96))':
+  '@analogjs/vite-plugin-angular@2.4.0(@angular/build@21.2.0(221da6de9eb8251750181395e2641a96))':
     dependencies:
       tinyglobby: 0.2.15
       ts-morph: 21.0.1
